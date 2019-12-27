@@ -27,10 +27,11 @@ public class ItemSpawner : MonoBehaviour
         int rand = Random.Range(0, items.Length );
 
         // random number between the length of this object
-        //float randomVector = Random.Range(0, this.tranform.position.x);
+        //float randomVector = Random.Range(0, this.gameObject.tranform.position.x);
+        Vector2 pos = transform.TransformPoint(Random.Range(-1 * Screen.Width/2,Screen.Width/2, constantYPos, 0);
 
 
-        Instantiate(items[rand], this.transform.position, transform.rotation);
+        Instantiate(items[rand], pos, transform.rotation);
     }
 
     private bool shouldSpawn()
