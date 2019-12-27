@@ -19,7 +19,7 @@ public class DestroyPrefab : MonoBehaviour
         if(isEaten){
             Destroy(this.gameObject);
         }
-        else if(this.gameObject.transform.position.y <= 0){
+        else if(this.gameObject.transform.position.y <= .89f){
             Destroy(this.gameObject);
         }
     }
