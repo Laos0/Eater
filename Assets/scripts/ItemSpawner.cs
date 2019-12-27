@@ -27,9 +27,10 @@ public class ItemSpawner : MonoBehaviour
         int rand = Random.Range(0, items.Length );
 
         // random number between the length of this object
-        //float randomVector = Random.Range(0, this.gameObject.tranform.position.x);
-        Vector2 pos = transform.TransformPoint(Random.Range(-1 * Screen.Width/2,Screen.Width/2, constantYPos, 0);
+        float randomVectorX = Random.Range(0.0f, this.gameObject.transform.localScale.x);
+        Vector3 pos = new Vector3(randomVectorX,this.transform.position.y, this.gameObject.transform.position.z);
 
+        Debug.Log(randomVectorX);
 
         Instantiate(items[rand], pos, transform.rotation);
     }
