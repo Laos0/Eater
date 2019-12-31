@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeForm : MonoBehaviour
 {
+    
     public enum BodyType {SKINNY, NORMAL, FAT};
     public BodyType currBodyType = BodyType.SKINNY;
 
