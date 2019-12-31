@@ -30,7 +30,7 @@ public class ItemSpawner : MonoBehaviour
         float randomVectorX = Random.Range(0.0f, this.gameObject.transform.localScale.x);
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y, this.gameObject.transform.position.z);
 
-        Debug.Log(randomVectorX);
+        //Debug.Log(randomVectorX);
 
         Instantiate(items[rand], pos, transform.rotation);
     }
