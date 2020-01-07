@@ -88,7 +88,16 @@ public class PlayerEat : MonoBehaviour
     {
         this.gameObject.GetComponent<PlayerController>().canMove = false;
 
-        yield return new WaitForSeconds(3f); // stops player's movement for 3 seconds
+        if(this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.SKINNY)
+        {
+            yield return new WaitForSeconds(3f); // stops player's movement for 3 seconds
+        }else if(this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.NORMAL)
+        {
+            yield return new WaitForSeconds(2f);
+        }else if(this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.FAT)
+        {
+            yield return new WaitForSeconds(1f);
+        }
 
         this.gameObject.GetComponent<PlayerController>().canMove = true; // Let the player move again after 3 seconds
     }
