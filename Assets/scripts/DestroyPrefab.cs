@@ -23,4 +23,12 @@ public class DestroyPrefab : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.name == "floor")
+        {
+            Destroy(this.gameObject);
+        }
+    }
 }
