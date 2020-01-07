@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class FoodStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
+    public enum FoodType {FRUITS, MEAT, ENGERY};
+
+    public FoodType foodType;
+
     void Update()
     {
-        
+        if(gameObject.tag == "fruit"){
+            foodType = FoodType.FRUITS;
+        }else if(gameObject.tag == "meat"){
+            foodType = FoodType.MEAT;
+        }else if(gameObject.tag == "energy"){
+            foodType = FoodType.ENGERY;
+        }
     }
 }

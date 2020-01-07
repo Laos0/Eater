@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class ChangeForm : MonoBehaviour
 {
-    
+
     public enum BodyType {SKINNY, NORMAL, FAT};
     public BodyType currBodyType = BodyType.SKINNY;
 
-    public static int walkSpd;
-
     void Start(){
         currBodyType = BodyType.NORMAL;
-        walkSpd = 2;
     }
 
     // Update is called once per frame
@@ -33,7 +30,6 @@ public class ChangeForm : MonoBehaviour
 
     void skinnyForm(){
         if(currBodyType == BodyType.SKINNY){
-            walkSpd = 3;
 
             // change the scale of the player
             this.gameObject.transform.localScale = new Vector3(.5f, 1.0f, .5f);
@@ -42,7 +38,6 @@ public class ChangeForm : MonoBehaviour
 
     void normalForm(){
         if(currBodyType == BodyType.NORMAL){
-            walkSpd = 2;
              // change the scale of the player
             this.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
@@ -50,7 +45,6 @@ public class ChangeForm : MonoBehaviour
 
     void fatForm(){
         if(currBodyType == BodyType.FAT){
-            walkSpd = 1;
              // change the scale of the player
             this.gameObject.transform.localScale = new Vector3(1.5f, 1.0f, 1.5f);
         }
