@@ -26,8 +26,11 @@ public class ItemSpawner : MonoBehaviour
         // the random number between 0 and the array size
         int rand = Random.Range(0, items.Length );
 
+        // divide the itemSpawner by 2
+        float halfItemSpawnerLength = this.gameObject.transform.localScale.x / 2;
+
         // random number between the length of this object
-        float randomVectorX = Random.Range(-this.gameObject.transform.localScale.x, this.gameObject.transform.localScale.x);
+        float randomVectorX = Random.Range(-halfItemSpawnerLength, halfItemSpawnerLength);
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y, this.gameObject.transform.position.z);
 
         //Debug.Log(randomVectorX);
