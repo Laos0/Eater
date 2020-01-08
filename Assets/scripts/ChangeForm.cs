@@ -46,8 +46,8 @@ public class ChangeForm : MonoBehaviour
              // change the scale of the player
             //this.gameObject.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             characterPrefabs[0].SetActive(false);
-            characterPrefabs[1].SetActive(true);
-            characterPrefabs[2].SetActive(false);
+            characterPrefabs[1].SetActive(false);
+            characterPrefabs[2].SetActive(true);
         }
     }
 
@@ -56,8 +56,8 @@ public class ChangeForm : MonoBehaviour
              // change the scale of the player
             //this.gameObject.transform.localScale = new Vector3(1.5f, 1.0f, 1.5f);
             characterPrefabs[0].SetActive(false);
-            characterPrefabs[1].SetActive(false);
-            characterPrefabs[2].SetActive(true);
+            characterPrefabs[1].SetActive(true);
+            characterPrefabs[2].SetActive(false);
         }
     }
 }
