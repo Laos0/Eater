@@ -26,23 +26,13 @@ public class ChangeFromProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // increment progress bar from 0 - 100
-        /*
-        if(slider.value < targetProgress)
-        {
-            slider.value += fillSpd * Time.deltaTime;
-        }else if(slider.value > targetProgress)
-        {
-            slider.value -= fillSpd * Time.deltaTime;
-        }
-        */
 
+        // decrease the progress bar until it reaches 0
         if (didChangeForm)
         {
             if(slider.value != 0.0f)
             {
                 decrementProgressBar(1f);
-                Debug.Log(slider.value);
             }
             else if(slider.value == 0)
             {
@@ -51,12 +41,12 @@ public class ChangeFromProgressBar : MonoBehaviour
             
         }
 
+        // increase progress bar until it reaches 1
         if(!didChangeForm)
         {
             if (slider.value < 1.0f)
             {
                 incrementProgressBar(1f);
-                Debug.Log(slider.value);
             }
             else if (slider.value == 1.0f)
             {

@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 
     // the forms the players can be which will affect the player's movement
     public Form currentForm = null;
-    public Form skinnyForm = new Form(25);
-    public Form normalForm = new Form(15);
+    public Form skinnyForm = new Form(35);
+    public Form normalForm = new Form(20);
     public Form fatForm = new Form(0);
 
     public bool canMove = true;

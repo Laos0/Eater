@@ -29,6 +29,10 @@ public class PlayerEat : MonoBehaviour
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();
+            // also increase the progress bar by a little
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
+            gameManager.GetComponent<TheGameManager>().changeFormSlider.value += .2f;
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE AFTER ADDING .2f to it: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
 
         }
         else if (col.gameObject.name == "floor")
@@ -52,6 +56,10 @@ public class PlayerEat : MonoBehaviour
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();
+            // also increase the progress bar by a little
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
+            gameManager.GetComponent<TheGameManager>().changeFormSlider.value += .2f;
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE AFTER ADDING .2f to it: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
         }
         else if (col.gameObject.name == "floor")
         {
@@ -74,6 +82,10 @@ public class PlayerEat : MonoBehaviour
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();
+            // also increase the progress bar by a little
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
+            gameManager.GetComponent<TheGameManager>().changeFormSlider.value += .2f;
+            Debug.Log("THE CURRENT PROGRESS BAR VALUE AFTER ADDING .2f to it: " + gameManager.GetComponent<TheGameManager>().changeFormSlider.value);
         }
         else if (col.gameObject.name == "floor")
         {
