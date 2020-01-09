@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerEat : MonoBehaviour
 {
 
+    public GameObject gameManager;
+
     void OnCollisionEnter(Collision col){
 
         if (col.gameObject.CompareTag("fruit"))
@@ -26,6 +28,8 @@ public class PlayerEat : MonoBehaviour
         if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.NORMAL && col.gameObject.CompareTag("fruit"))
         {
             Debug.Log("can move, gained 1 coin.");
+            gameManager.GetComponent<TheGameManager>().increasePlayerScore();
+
         }
         else if (col.gameObject.name == "floor")
         {
@@ -47,6 +51,7 @@ public class PlayerEat : MonoBehaviour
         if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.SKINNY && col.gameObject.CompareTag("energy"))
         {
             Debug.Log("can move, gained 1 coin.");
+            gameManager.GetComponent<TheGameManager>().increasePlayerScore();
         }
         else if (col.gameObject.name == "floor")
         {
@@ -68,6 +73,7 @@ public class PlayerEat : MonoBehaviour
         if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.FAT && col.gameObject.CompareTag("meat"))
         {
             Debug.Log("can move, gained 1 coin.");
+            gameManager.GetComponent<TheGameManager>().increasePlayerScore();
         }
         else if (col.gameObject.name == "floor")
         {

@@ -11,7 +11,7 @@ public class ChangeForm : MonoBehaviour
     public GameObject[] characterPrefabs;
 
     void Start(){
-        currBodyType = BodyType.NORMAL;
+        currBodyType = BodyType.SKINNY;
     }
 
     // Update is called once per frame

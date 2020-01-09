@@ -19,7 +19,7 @@ public class DestroyPrefab : MonoBehaviour
         if(isEaten){
             Destroy(this.gameObject);
         }
-        else if(this.gameObject.transform.position.y <= .89f){
+        else if(this.gameObject.transform.position.y <= .10f){
             Destroy(this.gameObject);
         }
     }
@@ -29,6 +29,16 @@ public class DestroyPrefab : MonoBehaviour
         if(col.gameObject.name == "floor")
         {
             Destroy(this.gameObject);
+
+        }else if(col.gameObject.name == "Player")
+        {
+            isEaten = true;
         }
+    }
+
+    // might not need this method
+    public bool getEatenStatus()
+    {
+        return isEaten;
     }
 }

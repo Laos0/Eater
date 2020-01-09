@@ -19,6 +19,7 @@ public class AnimRotateSimple : MonoBehaviour {
 	
 	void OnMouseDown(){
 		canRotate = !canRotate;
+		Debug.Log("Rotating");
 	}
 	
 	// Update is called once per frame

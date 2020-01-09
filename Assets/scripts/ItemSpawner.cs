@@ -7,6 +7,7 @@ public class ItemSpawner : MonoBehaviour
     private float spawnDelay = 1;
     private float spawnTime;
     public GameObject[] items;
+    public GameObject gameManager;
 
 
     // Update is called once per frame
@@ -36,6 +37,7 @@ public class ItemSpawner : MonoBehaviour
         //Debug.Log(randomVectorX);
 
         Instantiate(items[rand], pos, transform.rotation);
+        gameManager.GetComponent<TheGameManager>().increaseitemCount();
     }
 
     private bool shouldSpawn()
