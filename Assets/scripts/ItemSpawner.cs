@@ -20,7 +20,7 @@ public class ItemSpawner : MonoBehaviour
     }
 
     // spawning the prefabs of each items at random
-    private void spawnPrefab()
+    public void spawnPrefab()
     {
         spawnTime = Time.time + spawnDelay;
 
@@ -34,10 +34,9 @@ public class ItemSpawner : MonoBehaviour
         float randomVectorX = Random.Range(-halfItemSpawnerLength, halfItemSpawnerLength);
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y, this.gameObject.transform.position.z);
 
-        //Debug.Log(randomVectorX);
-
         Instantiate(items[rand], pos, transform.rotation);
         gameManager.GetComponent<TheGameManager>().increaseitemCount();
+    
     }
 
     private bool shouldSpawn()

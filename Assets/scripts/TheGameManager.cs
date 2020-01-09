@@ -34,6 +34,8 @@ public class TheGameManager : Singleton<TheGameManager>
         if(levelManager.getCurrentItemCount() % 5 == 0)
         {
             increaseTheLevel();
+            
+
         }
     }
 
