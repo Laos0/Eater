@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TheGameManager : Singleton<TheGameManager>
 {
@@ -8,6 +9,7 @@ public class TheGameManager : Singleton<TheGameManager>
     public PlayerScore playerScore;
     public GameObject itemSpawner;
     public LevelScript levelManager;
+    public Slider changeFormSlider;
 
     // Update is called once per frame
     void Update()
@@ -37,6 +39,11 @@ public class TheGameManager : Singleton<TheGameManager>
             
 
         }
+    }
+
+    public void decrementChangeFormSlider()
+    {
+        changeFormSlider.GetComponent<ChangeFromProgressBar>().setDidChangeForm(true);
     }
 
 }

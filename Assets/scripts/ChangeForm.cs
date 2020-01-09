@@ -7,26 +7,49 @@ public class ChangeForm : MonoBehaviour
 
     public enum BodyType {SKINNY, NORMAL, FAT};
     public BodyType currBodyType = BodyType.SKINNY;
+    public bool canChange;
+    public int changeFormCoolDown;
+    public GameObject gameManager;
 
     public GameObject[] characterPrefabs;
 
     void Start(){
         currBodyType = BodyType.SKINNY;
+        canChange = true;
+        changeFormCoolDown = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
         // when player press space bar, change form
-        if(Input.GetKey(KeyCode.Q) ){
+        if(Input.GetKey(KeyCode.Q) && canChange){
+
             currBodyType = BodyType.SKINNY;
             skinnyForm();
-        }else if(Input.GetKey(KeyCode.E)){
+            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
+            canChange = false;
+
+        }else if(Input.GetKey(KeyCode.E) && canChange){
+
             currBodyType = BodyType.NORMAL;
             normalForm();
-        }else if(Input.GetKey(KeyCode.R)){
+            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
+            canChange = false;
+
+        }
+        else if(Input.GetKey(KeyCode.R) && canChange){
+
             currBodyType = BodyType.FAT;
             fatForm();
+            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
+            canChange = false;
+        }
+
+        // to see if the progress bar is fill up so we can change form again
+        if (gameManager.GetComponent<TheGameManager>().changeFormSlider.value == 1.0f)
+        {
+            canChange = true;
         }
     }
 
