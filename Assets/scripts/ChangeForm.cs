@@ -23,14 +23,14 @@ public class ChangeForm : MonoBehaviour
     void Update()
     {
         // when player press space bar, change form
-        if(Input.GetKey(KeyCode.Q) && canChange){
+        if(Input.GetKey(KeyCode.J) && canChange){
 
             currBodyType = BodyType.SKINNY;
             skinnyForm();
             gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
             canChange = false;
 
-        }else if(Input.GetKey(KeyCode.E) && canChange){
+        }else if(Input.GetKey(KeyCode.K) && canChange){
 
             currBodyType = BodyType.NORMAL;
             normalForm();
@@ -38,7 +38,7 @@ public class ChangeForm : MonoBehaviour
             canChange = false;
 
         }
-        else if(Input.GetKey(KeyCode.R) && canChange){
+        else if(Input.GetKey(KeyCode.L) && canChange){
 
             currBodyType = BodyType.FAT;
             fatForm();

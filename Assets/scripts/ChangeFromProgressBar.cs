@@ -7,7 +7,7 @@ public class ChangeFromProgressBar : MonoBehaviour
 {
 
     private Slider slider;
-    public float fillSpd = 1f;
+    public float fillSpd = 1.0f;
     private float targetProgress = 0;
     public bool didChangeForm = false;
 
