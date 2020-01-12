@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemStats : MonoBehaviour
 {
     public ItemStatsTemplate itemStats;
+    public EnumValue itemType;
 
     // Start is called before the first frame update
     void Start()

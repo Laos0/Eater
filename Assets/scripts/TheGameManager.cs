@@ -87,4 +87,5 @@ public class TheGameManager : Singleton<TheGameManager>
 		changeFormSlider.GetComponent<ChangeFromProgressBar>().setDidChangeForm(true);
 	}
 
+
 }
