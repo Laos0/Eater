@@ -24,30 +24,26 @@ public class ChangeForm : MonoBehaviour
     {
         // when player press space bar, change form
         if(Input.GetKey(KeyCode.J) && canChange){
-
-            currBodyType = BodyType.SKINNY;
-            skinnyForm();
-            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
-            canChange = false;
-
-        }else if(Input.GetKey(KeyCode.K) && canChange){
-
-            currBodyType = BodyType.NORMAL;
-            normalForm();
-            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
-            canChange = false;
-
+				currBodyType = BodyType.SKINNY;
+				skinnyForm();
+				TheGameManager.Instance.decrementChangeFormSlider();
+				canChange = false;
         }
-        else if(Input.GetKey(KeyCode.L) && canChange){
-
-            currBodyType = BodyType.FAT;
-            fatForm();
-            gameManager.GetComponent<TheGameManager>().decrementChangeFormSlider();
-            canChange = false;
+        if(Input.GetKey(KeyCode.K) && canChange) {
+				currBodyType = BodyType.NORMAL;
+				normalForm();
+				TheGameManager.Instance.decrementChangeFormSlider();
+				canChange = false;
+        }
+        if(Input.GetKey(KeyCode.L) && canChange) {
+				currBodyType = BodyType.FAT;
+				fatForm();
+				TheGameManager.Instance.decrementChangeFormSlider();
+				canChange = false;
         }
 
         // to see if the progress bar is fill up so we can change form again
-        if (gameManager.GetComponent<TheGameManager>().changeFormSlider.value == 1.0f)
+        if (TheGameManager.Instance.changeFormSlider.value == 1.0f)
         {
             canChange = true;
         }
