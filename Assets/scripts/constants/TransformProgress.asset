@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55697a7c64f9043b4a5c4a27c0063552, type: 3}
-  m_Name: HP
+  m_Name: TransformProgress
   m_EditorClassIdentifier: 
-  value: 5.71
+  value: 0

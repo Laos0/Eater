@@ -16,19 +16,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 124
   m_CollisionDetection: 0
---- !u!65 &845247406
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6782464780261184929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.707454, y: 12.203899, z: 6.8640213}
-  m_Center: {x: 0, y: 5.658663, z: 0.07828367}
 --- !u!1001 &3243096262439832744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,7 +81,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 89667600841dc497382f9b3fd6b8e218,
         type: 3}
       propertyPath: m_Name
-      value: skinnyguy
+      value: skinnyguy Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 89667600841dc497382f9b3fd6b8e218, type: 3}

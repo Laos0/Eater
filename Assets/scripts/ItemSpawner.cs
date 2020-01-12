@@ -9,11 +9,16 @@ public class ItemSpawner : MonoBehaviour
     public GameObject[] items;
     public GameObject gameManager;
 
+    /// <summary>
+    /// When true, the spawn will not spawn regardless of any other settings.
+    /// </summary>
+    public bool disable = false;
+
 
     // Update is called once per frame
     void Update()
     {
-        if (shouldSpawn())
+        if (!disable && shouldSpawn())
         {
             spawnPrefab();
         }
@@ -32,7 +37,11 @@ public class ItemSpawner : MonoBehaviour
 
         // random number between the length of this object
         float randomVectorX = Random.Range(-halfItemSpawnerLength, halfItemSpawnerLength);
-        Vector3 pos = new Vector3(randomVectorX,this.transform.position.y, this.gameObject.transform.position.z);
+
+        // prevent items getting stuck on the spawn bar by spawning lower than the spawn bar
+        float yOffset = 5f;
+
+        Vector3 pos = new Vector3(randomVectorX,this.transform.position.y - yOffset, this.gameObject.transform.position.z);
 
         Instantiate(items[rand], pos, transform.rotation);
         gameManager.GetComponent<TheGameManager>().increaseitemCount();

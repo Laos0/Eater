@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Holds access to all other sub managers and stats.
+/// This class serves as a public API for any class to get information
+/// of the current game state.
+/// </summary>
 public class TheGameManager : Singleton<TheGameManager>
 {
     public GameObject player;
@@ -11,10 +16,13 @@ public class TheGameManager : Singleton<TheGameManager>
     public LevelScript levelManager;
     public Slider changeFormSlider;
 
-    // Update is called once per frame
-    void Update()
+    public int getCurrentLevel()
     {
-       
+        if (levelManager)
+        {
+            return levelManager.getCurrentLvl();
+        }
+        return 0;
     }
 
     public void increasePlayerScore()
