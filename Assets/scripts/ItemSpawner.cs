@@ -12,13 +12,22 @@ public class ItemSpawner : MonoBehaviour
     /// <summary>
     /// When true, the spawn will not spawn regardless of any other settings.
     /// </summary>
-    public bool disable = false;
+    public bool isDisabled = false;
 
+    public void OnDisable()
+    {
+        isDisabled = true;
+    }
+
+    public void OnEnable()
+    {
+        isDisabled = false;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!disable && shouldSpawn())
+        if (!isDisabled && canSpawn())
         {
             spawnPrefab();
         }
@@ -48,7 +57,7 @@ public class ItemSpawner : MonoBehaviour
     
     }
 
-    private bool shouldSpawn()
+    private bool canSpawn()
     {
         return Time.time >= spawnTime;
     }

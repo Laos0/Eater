@@ -14,6 +14,16 @@ public class PlayerController : MonoBehaviour
 
     public bool canMove = true;
 
+    public void disable()
+    {
+        canMove = false;
+    }
+
+    public void enable()
+    {
+        canMove = true;
+    }
+
     // Update is called once per frame
     void Update()
     {

@@ -10,48 +10,81 @@ using UnityEngine.UI;
 /// </summary>
 public class TheGameManager : Singleton<TheGameManager>
 {
-    public GameObject player;
-    public PlayerScore playerScore;
-    public GameObject itemSpawner;
-    public LevelScript levelManager;
-    public Slider changeFormSlider;
+	public GameObject player;
+	public PlayerScore playerScore;
+	public GameObject itemSpawner;
+	public LevelScript levelManager;
+	public Slider changeFormSlider;
 
-    public int getCurrentLevel()
-    {
-        if (levelManager)
-        {
-            return levelManager.getCurrentLvl();
-        }
-        return 0;
-    }
+	private bool isPaused = false;
 
-    public void increasePlayerScore()
-    {
-        playerScore.increasePlayerScore();
-    }
+	/// <summary>
+	/// Should only contain admin controls
+	/// </summary>
+	public void Update()
+	{
+		if (Input.GetKeyUp(KeyCode.P)) {
+			isPaused = !isPaused;
+			if (isPaused) {
+				pauseGame();
+			} else {
+				unPauseGame();
+			}
+		}
+	}
 
-    public void increaseTheLevel()
-    {
-        levelManager.updateCurrentLvl();
-    }
+	private void pauseGame()
+	{
+		if (itemSpawner) {
+			itemSpawner.SetActive(false);
+		}
+		if (player) {
+			player.GetComponent<PlayerController>().disable();
+		}
+	}
 
-    public void increaseitemCount()
-    {
-        levelManager.incrementItemCount();
+	private void unPauseGame()
+	{
+		if (itemSpawner) {
+			itemSpawner.SetActive(true);
+		}
+		if (player) {
+			player.GetComponent<PlayerController>().enable();
+		}
+	}
 
-        // checking if the level should be increased after a certain amount of item drops
-        // increase level every 5 level
-        if(levelManager.getCurrentItemCount() % 5 == 0)
-        {
-            increaseTheLevel();
-            
+	public int getCurrentLevel()
+	{
+		if (levelManager) {
+			return levelManager.getCurrentLvl();
+		}
+		return 0;
+	}
 
-        }
-    }
+	public void increasePlayerScore()
+	{
+		playerScore.increasePlayerScore();
+	}
 
-    public void decrementChangeFormSlider()
-    {
-        changeFormSlider.GetComponent<ChangeFromProgressBar>().setDidChangeForm(true);
-    }
+	public void increaseTheLevel()
+	{
+		levelManager.updateCurrentLvl();
+	}
+
+	public void increaseitemCount()
+	{
+		levelManager.incrementItemCount();
+
+		// checking if the level should be increased after a certain amount of item drops
+		// increase level every 5 level
+		if (levelManager.getCurrentItemCount() % 5 == 0) {
+			increaseTheLevel();
+		}
+	}
+
+	public void decrementChangeFormSlider()
+	{
+		changeFormSlider.GetComponent<ChangeFromProgressBar>().setDidChangeForm(true);
+	}
 
 }
