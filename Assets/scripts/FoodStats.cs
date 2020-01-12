@@ -5,8 +5,6 @@ using UnityEngine;
 public class FoodStats : MonoBehaviour
 {
 
-    public enum FoodType {FRUITS, MEAT, ENGERY};
-
     public FoodType foodType;
 
     void Update()

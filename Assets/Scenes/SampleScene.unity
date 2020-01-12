@@ -1479,6 +1479,7 @@ MonoBehaviour:
   - {fileID: 5067661607436215932, guid: f9662d54503fd9045bec4be5c9211532, type: 3}
   - {fileID: 4684854333366416907, guid: 3d4a26230728d8743b6e9f2a452cc51b, type: 3}
   - {fileID: 5119889404394937390, guid: b2dabe90bb2f240ed94e12d5bda06825, type: 3}
+  - {fileID: 3652923876054456899, guid: 9eade85388e0b444f91dfa83020ac17d, type: 3}
   gameManager: {fileID: 264423928}
   disable: 0
 --- !u!1 &2094834342 stripped
