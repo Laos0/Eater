@@ -7,4 +7,5 @@ public class ItemStatsTemplate : ScriptableObject
 {
     public FoodType foodType;
     public float fallSpeed;
+	public int pointValue;
 }
