@@ -2,43 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Destroy prefab when it collides with the ground.
+/// </summary>
 public class DestroyPrefab : MonoBehaviour
 {
+	void Update() {
+		if(gameObject.transform.position.y <= -10) {
+			destroySelf();
+		}
+	}
 
-    private bool isEaten = false;
-
-    // Destroys this game object has it reaches below 0 on y-axis
-    void Update()
-    {
-        destroyObject();
-    }
-
-    void destroyObject(){
-
-        // two condition: the food is ither eaten or not
-        if(isEaten){
-            Destroy(this.gameObject);
-        }
-        else if(this.gameObject.transform.position.y <= .10f){
-            Destroy(this.gameObject);
-        }
-    }
-
-    void OnCollisionEnter(Collision col)
+	void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.name == "floor")
         {
-            Destroy(this.gameObject);
-
-        }else if(col.gameObject.name == "Player")
-        {
-            isEaten = true;
+			destroySelf();
         }
     }
 
-    // might not need this method
-    public bool getEatenStatus()
-    {
-        return isEaten;
-    }
+	private void destroySelf() {
+		Destroy(this.gameObject);
+	}
+
 }

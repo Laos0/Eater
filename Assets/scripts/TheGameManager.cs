@@ -8,11 +8,10 @@ using UnityEngine.UI;
 /// This class serves as a public API for any class to get information
 /// of the current game state.
 /// </summary>
-[RequireComponent(typeof(ScoreManager), typeof(LevelManager))]
+//[RequireComponent(typeof(ScoreManager), typeof(LevelManager))]
 public class TheGameManager : Singleton<TheGameManager>
 {
 	public GameObject player;
-	public ScoreManager scoreManager;
 	public GameObject itemSpawner;
 	public LevelManager levelManager;
 
@@ -26,6 +25,7 @@ public class TheGameManager : Singleton<TheGameManager>
 	/// </summary>
 	public void Update()
 	{
+		// Admin debug shortcut keys
 		if (Input.GetKeyUp(KeyCode.P)) {
 			isPaused = !isPaused;
 			if (isPaused) {
@@ -33,6 +33,16 @@ public class TheGameManager : Singleton<TheGameManager>
 			} else {
 				unPauseGame();
 			}
+		}
+
+		if (Input.GetKeyUp(KeyCode.N)) {
+			nextLevel();
+		}
+	}
+
+	public void nextLevel() {
+		if (levelManager) {
+			levelManager.moveToNextLevel();
 		}
 	}
 
@@ -56,39 +66,17 @@ public class TheGameManager : Singleton<TheGameManager>
 		}
 	}
 
-	public int getCurrentLevel()
-	{
-		if (levelManager) {
-			return levelManager.getCurrentLvl();
-		}
-		return 0;
-	}
-
-	public void increasePlayerScore()
-	{
-		// todo update api to accept score param
-		scoreManager.add(1);
-	}
-
-	public void increaseTheLevel()
-	{
-		levelManager.updateCurrentLvl();
-	}
-
-	public void increaseitemCount()
-	{
-		levelManager.incrementItemCount();
-
-		// checking if the level should be increased after a certain amount of item drops
-		// increase level every 5 level
-		if (levelManager.getCurrentItemCount() % 5 == 0) {
-			increaseTheLevel();
-		}
-	}
-
 	public void decrementChangeFormSlider()
 	{
 		changeFormSlider.GetComponent<ChangeFromProgressBar>().setDidChangeForm(true);
+	}
+
+	public void validateCombo(ItemStats stat) {
+		if (levelManager && stat) {
+			levelManager.comboValidator.validateCombo(stat);
+		} else {
+			Debug.LogError("Failed to validate combo, levelManager or stat is null");
+		}
 	}
 
 

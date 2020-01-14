@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerEat : MonoBehaviour
 {
-
+	/*
     public GameObject gameManager;
 
     void OnCollisionEnter(Collision col){
@@ -122,4 +122,5 @@ public class PlayerEat : MonoBehaviour
         this.gameObject.GetComponent<PlayerController>().canMove = true; // Let the player move again after 3 seconds
         this.gameObject.GetComponent<ChangeForm>().canChange = true; // let the player change form after being stunned
     }
+    */
 }

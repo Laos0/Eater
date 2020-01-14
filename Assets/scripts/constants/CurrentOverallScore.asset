@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce4452a4209cb4728b4b33a864bfe455, type: 3}
-  m_Name: ItemStats_Blue
+  m_Script: {fileID: 11500000, guid: 35897d44a454548d69a8184cd3b4bf5f, type: 3}
+  m_Name: CurrentOverallScore
   m_EditorClassIdentifier: 
-  fallSpeed: 1
-  pointValue: 2
-  itemType: {fileID: 11400000, guid: aedfe38c0f26c40158f40bd0914db682, type: 2}
-  itemTier: {fileID: 11400000, guid: e4f3c68b809e24093b6f57308444d0be, type: 2}
+  value: 0

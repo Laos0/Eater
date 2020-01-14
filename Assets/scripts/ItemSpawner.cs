@@ -53,7 +53,6 @@ public class ItemSpawner : MonoBehaviour
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y - yOffset, this.gameObject.transform.position.z);
 
         Instantiate(items[rand], pos, transform.rotation);
-        gameManager.GetComponent<TheGameManager>().increaseitemCount();
     
     }
 

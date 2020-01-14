@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 93019421546098717}
   m_Layer: 0
   m_Name: _itemTemplate_pf
-  m_TagString: Untagged
+  m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemStats: {fileID: 0}
-  itemType: {fileID: 0}
 --- !u!114 &5396989661376128767
 MonoBehaviour:
   m_ObjectHideFlags: 0
