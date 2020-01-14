@@ -25,7 +25,7 @@ public class PlayerEat : MonoBehaviour
 
     void eatFruit(Collision col)
     {
-        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.NORMAL && col.gameObject.CompareTag("fruit"))
+        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.NORMAL)
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();
@@ -52,7 +52,7 @@ public class PlayerEat : MonoBehaviour
 
     void eatEnergy(Collision col)
     {
-        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.SKINNY && col.gameObject.CompareTag("energy"))
+        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.SKINNY)
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();
@@ -78,7 +78,7 @@ public class PlayerEat : MonoBehaviour
 
     void eatMeat(Collision col)
     {
-        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.FAT && col.gameObject.CompareTag("meat"))
+        if (this.gameObject.GetComponent<ChangeForm>().currBodyType == ChangeForm.BodyType.FAT)
         {
             Debug.Log("can move, gained 1 coin.");
             gameManager.GetComponent<TheGameManager>().increasePlayerScore();

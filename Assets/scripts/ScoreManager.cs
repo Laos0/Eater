@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerScore : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
 
-    public int playerScore;
+    public IntReference currentScore;
     public Text playerScoreTxt;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScore = 0;
-        playerScoreTxt.text = playerScore.ToString();
+        currentScore.Variable.value = 0;
+        playerScoreTxt.text = currentScore.ToString();
     }
 
-    public void increasePlayerScore()
-    {
-        playerScore++;
-        playerScoreTxt.text = playerScore.ToString();
+	/// <summary>
+	/// Adds incoming score onto the current score.
+	/// </summary>
+    public void add(int value){
+		currentScore.Variable.value += value;
     }
 
 }

@@ -8,12 +8,15 @@ using UnityEngine.UI;
 /// This class serves as a public API for any class to get information
 /// of the current game state.
 /// </summary>
+[RequireComponent(typeof(ScoreManager), typeof(LevelManager))]
 public class TheGameManager : Singleton<TheGameManager>
 {
 	public GameObject player;
-	public PlayerScore playerScore;
+	public ScoreManager scoreManager;
 	public GameObject itemSpawner;
 	public LevelManager levelManager;
+
+	//todo
 	public Slider changeFormSlider;
 
 	private bool isPaused = false;
@@ -63,7 +66,8 @@ public class TheGameManager : Singleton<TheGameManager>
 
 	public void increasePlayerScore()
 	{
-		playerScore.increasePlayerScore();
+		// todo update api to accept score param
+		scoreManager.add(1);
 	}
 
 	public void increaseTheLevel()

@@ -80,12 +80,12 @@ PrefabInstance:
         type: 3}
       propertyPath: itemStats
       value: 
-      objectReference: {fileID: 11400000, guid: 6339d73ff5e5ab14aaf965027e7834dc,
+      objectReference: {fileID: 11400000, guid: fa2d4277d28ea43dd9ad5c29d598452a,
         type: 2}
     - target: {fileID: 4831911315436679877, guid: 5fdd3a875a77b4a27be25441a668d9a5,
         type: 3}
       propertyPath: m_Name
-      value: _itemTemplate_pf
+      value: mechanic
       objectReference: {fileID: 0}
     - target: {fileID: 6381734713700412449, guid: 5fdd3a875a77b4a27be25441a668d9a5,
         type: 3}

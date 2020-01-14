@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ItemStatsTemplate", menuName = "ItemStatsTemplate")]
 public class ItemStatsTemplate : ScriptableObject
 {
-    public FoodType foodType;
     public float fallSpeed;
 	public int pointValue;
+	public EnumValue itemType;
+	public EnumValue itemTier;
 }
