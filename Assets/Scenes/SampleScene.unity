@@ -357,7 +357,7 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 61b2e63f7c5044af4a50f4db98facee4, type: 2}
   currentOverallScore:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: f507f8777b307493daa5d169d32d6e4b, type: 2}
   itemSpawner: {fileID: 1834321101}
