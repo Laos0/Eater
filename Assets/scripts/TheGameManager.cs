@@ -13,7 +13,7 @@ public class TheGameManager : Singleton<TheGameManager>
 	public GameObject player;
 	public PlayerScore playerScore;
 	public GameObject itemSpawner;
-	public LevelScript levelManager;
+	public LevelManager levelManager;
 	public Slider changeFormSlider;
 
 	private bool isPaused = false;
