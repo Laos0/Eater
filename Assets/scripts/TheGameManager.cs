@@ -54,6 +54,10 @@ public class TheGameManager : Singleton<TheGameManager>
 		}
 	}
 
+	public void registerAndDestroyLevelItem(GameObject go) {
+		levelManager.registerAndDestroyLevelItem(go);
+	}
+
 	public void gameOver() {
 		pauseGame();
 		if (uiManager) {

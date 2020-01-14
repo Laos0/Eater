@@ -28,7 +28,7 @@ public class ItemConsumer : MonoBehaviour
 				TheGameManager.Instance.validateCombo(stat);
 
 				// get rid of item prefab in scene
-				Destroy(col.gameObject);
+				TheGameManager.Instance.registerAndDestroyLevelItem(col.gameObject);
 			}
 		}
 	}

@@ -13,7 +13,8 @@ public class LevelManager : MonoBehaviour {
 	public IntReference currentLevel;
 	public IntReference currentLevelScore;
 	public IntReference currentOverallScore;
-	public IntReference currentLevelObjectScore;
+	public IntReference currentLevelObjectiveScore;
+	public IntReference currentLevelDestroyedItemCounter;
 
 	/// <summary>
 	/// The current max item for the current level
@@ -50,18 +51,33 @@ public class LevelManager : MonoBehaviour {
 	/// Good for start of a new game.
 	/// </summary>
 	public void reset() {
+		// these are global values for the entire game session
 		currentLevel.Variable.value = 1;
-		currentLevelScore.Variable.value = 0;
-		currentLevelObjectScore.Variable.value = 0;
 		currentOverallScore.Variable.value = 0;
 
+		// this is level dependent stats
+		levelStatsReset();
+
+		// once all stats are cleared out, set the proper level stat for that level
 		setLevelStats();
 		itemCount = 0;
 
-		removeAllExistingItems();
+		removeAllExistingGameObjectItems();
 	}
 
-	private void removeAllExistingItems() {
+	public void registerAndDestroyLevelItem(GameObject item) {
+		if(currentLevelDestroyedItemCounter != null) {
+			currentLevelDestroyedItemCounter.Variable.value++;
+			Destroy(item);
+			if(currentLevelDestroyedItemCounter.Value >= currentLevelMaxSpawn.Value) {
+				TheGameManager.Instance.nextLevel();
+			}
+		} else {
+			Debug.LogError("Failed to destroy and register item, destroy item counter is null");
+		}
+	}
+
+	private void removeAllExistingGameObjectItems() {
 		List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("item"));
 		Debug.Log("Removing all existing items for restart, found: " + items.Count);
 		items.ForEach(item => {
@@ -69,24 +85,29 @@ public class LevelManager : MonoBehaviour {
 		});
 	}
 
-	public void incrementItemCount()
-    {
-        itemCount++;
-    }
+	/// <summary>
+	/// Use for starting a new level. Not for restarting a brand new game session.
+	/// </summary>
+	private void levelStatsReset() {
+		currentLevelScore.Variable.value = 0;
+		currentLevelObjectiveScore.Variable.value = 0;
+		currentLevelDestroyedItemCounter.Variable.value = 0;
+	}
+
 
 	/// <summary>
 	/// Sets the next level stats, goals, objectives, chanllenges for player.
 	/// Should be called at every new level.
 	/// </summary>
 	public void setLevelStats() {
-		currentLevelScore.Variable.value = 0;
+		levelStatsReset();
 		int level = currentLevel.Variable.value;
 
 		// max item to spawn algorithm is level + minimum
 		currentLevelMaxSpawn.Variable.value = level + minimumItemPerLevel;
 
 		// score objective is always half of the total possible score per level - for now
-		currentLevelObjectScore.Variable.value = Mathf.RoundToInt((level + currentLevelMaxSpawn.Value) / 2);
+		currentLevelObjectiveScore.Variable.value = Mathf.RoundToInt((level + currentLevelMaxSpawn.Value) / 2);
 
 		// setup max spawn
 		currentLevelSpawnCount.Variable.value = currentLevelMaxSpawn.Value;
@@ -119,11 +140,11 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	private bool canAdvanceToNextLevel() {
-		return currentLevelScore.Value >= currentLevelObjectScore.Value;
+		return currentLevelScore.Value >= currentLevelObjectiveScore.Value;
 	}
 
 	private void gameOver() {
-		reset();
+		reset(); // todo may not need as redundent
 		TheGameManager.Instance.gameOver();
 	}
 
@@ -140,12 +161,6 @@ public class LevelManager : MonoBehaviour {
 		generateNewComboSet();
 		itemSpawner.SetActive(true);		// enable spawner
 	}
-
-
-	public int getCurrentItemCount()
-    {
-        return itemCount;
-    }
 
 	public void validateCombo(ItemStats stats) {
 		if(stats && comboValidator) {

@@ -423,10 +423,14 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: f507f8777b307493daa5d169d32d6e4b, type: 2}
-  currentLevelObjectScore:
+  currentLevelObjectiveScore:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 7ad9103ce362943dfb2c4866b5969e82, type: 2}
+  currentLevelDestroyedItemCounter:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 9c5b93548b58342ddabebc6ac381d521, type: 2}
   currentLevelMaxSpawn:
     UseConstant: 0
     ConstantValue: 0

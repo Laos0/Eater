@@ -14,7 +14,7 @@ public class DestroyPrefab : MonoBehaviour
 	}
 
 	public void forceDestroy() {
-		destroySelf();
+		Destroy(this.gameObject);	// don't register and destroy with this call
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -26,7 +26,7 @@ public class DestroyPrefab : MonoBehaviour
 	}
 
 	private void destroySelf() {
-		Destroy(this.gameObject);
+		TheGameManager.Instance.registerAndDestroyLevelItem(gameObject);
 	}
 
 }
