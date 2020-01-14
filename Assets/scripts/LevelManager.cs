@@ -15,6 +15,12 @@ public class LevelManager : MonoBehaviour {
 	public IntReference currentOverallScore;
 	public IntReference currentLevelObjectScore;
 
+	/// <summary>
+	/// The current max item for the current level
+	/// </summary>
+	public IntReference currentLevelMaxSpawn;
+	public IntReference currentLevelSpawnCount;
+
 	public GameObject itemSpawner;
 	public GameObject uiManager_go;
 	public ComboValidator comboValidator;
@@ -30,11 +36,6 @@ public class LevelManager : MonoBehaviour {
 	/// </summary>
 	public int minimumItemPerLevel;
 
-	/// <summary>
-	/// The current max item for the current level
-	/// </summary>
-	public int currentLevelMaxItem;
-	public int currentLevelSpawnCount;
 
     // Start is called before the first frame update
 
@@ -64,23 +65,21 @@ public class LevelManager : MonoBehaviour {
     }
 
 	/// <summary>
-	/// Should be called at every new level
+	/// Sets the next level stats, goals, objectives, chanllenges for player.
+	/// Should be called at every new level.
 	/// </summary>
 	public void setLevelStats() {
 		currentLevelScore.Variable.value = 0;
 		int level = currentLevel.Variable.value;
 
 		// max item to spawn algorithm is level + minimum
-		currentLevelMaxItem = level + minimumItemPerLevel;
+		currentLevelMaxSpawn.Variable.value = level + minimumItemPerLevel;
 
 		// score objective is always half of the total possible score per level - for now
-		currentLevelObjectScore.Variable.value = Mathf.RoundToInt((level + currentLevelMaxItem) / 2);
+		currentLevelObjectScore.Variable.value = Mathf.RoundToInt((level + currentLevelMaxSpawn.Value) / 2);
 
-
-		currentLevelSpawnCount = currentLevelMaxItem;
-		if (itemSpawner) {
-			itemSpawner.GetComponent<ItemSpawner>().setMaxSpawn(currentLevelMaxItem);
-		}
+		// setup max spawn
+		currentLevelSpawnCount.Variable.value = currentLevelMaxSpawn.Value;
 	}
 
 	/// <summary>

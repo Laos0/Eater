@@ -11,10 +11,15 @@ public class UIManager : MonoBehaviour
 	public Text nextLevelAlertTxt;
 	public Text levelObjectScoreTxt;
 
+	public Text currentMaxSpawnTxt;
+	public Text currentSpawnCountTxt;
+
 	public IntReference currentLevel;
 	public IntReference currentLevelScore;
 	public IntReference overallTotalScore;
 	public IntReference currentLevelScoreObjective;
+	public IntReference curentLevelMaxSpawn;
+	public IntReference currentLevelSpawnCount;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +37,12 @@ public class UIManager : MonoBehaviour
 		}
 		if (levelObjectScoreTxt && currentLevelScoreObjective != null) {
 			levelObjectScoreTxt.text = currentLevelScoreObjective.Value.ToString();
+		}
+		if (currentMaxSpawnTxt && curentLevelMaxSpawn != null) {
+			currentMaxSpawnTxt.text = curentLevelMaxSpawn.Value.ToString();
+		}
+		if (currentSpawnCountTxt && currentLevelSpawnCount != null) {
+			currentSpawnCountTxt.text = currentLevelSpawnCount.Value.ToString();
 		}
 	}
 

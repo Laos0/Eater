@@ -255,6 +255,8 @@ MonoBehaviour:
   levelTxt: {fileID: 1354524454}
   nextLevelAlertTxt: {fileID: 497950956}
   levelObjectScoreTxt: {fileID: 460585008}
+  currentMaxSpawnTxt: {fileID: 586642002}
+  currentSpawnCountTxt: {fileID: 830701598}
   currentLevel:
     UseConstant: 0
     ConstantValue: 0
@@ -271,6 +273,14 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 7ad9103ce362943dfb2c4866b5969e82, type: 2}
+  curentLevelMaxSpawn:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 4edaee1a5abb0495dae5359eb4c1cedb, type: 2}
+  currentLevelSpawnCount:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 785559fb64fce455b9f726c7804c60c3, type: 2}
 --- !u!4 &178202354
 Transform:
   m_ObjectHideFlags: 0
@@ -415,12 +425,18 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 7ad9103ce362943dfb2c4866b5969e82, type: 2}
+  currentLevelMaxSpawn:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 4edaee1a5abb0495dae5359eb4c1cedb, type: 2}
+  currentLevelSpawnCount:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 785559fb64fce455b9f726c7804c60c3, type: 2}
   itemSpawner: {fileID: 1834321101}
   uiManager_go: {fileID: 178202352}
   comboValidator: {fileID: 264423931}
   minimumItemPerLevel: 4
-  currentLevelMaxItem: 0
-  currentLevelSpawnCount: 0
 --- !u!82 &264423933
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2113,7 +2129,14 @@ MonoBehaviour:
   - {fileID: 3415713427201264968, guid: 237f62ae631124d08879e3fb81312fff, type: 3}
   - {fileID: 8832592232630704294, guid: 2247e747876944a44814df36bde4bbbe, type: 3}
   gameManager: {fileID: 264423928}
-  maxNumberToSpawn: 0
+  currentLevelMaxSpawn:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 4edaee1a5abb0495dae5359eb4c1cedb, type: 2}
+  currentLevelSpawnCount:
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 785559fb64fce455b9f726c7804c60c3, type: 2}
   isDisabled: 0
 --- !u!1 &1922562109
 GameObject:

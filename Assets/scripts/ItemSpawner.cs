@@ -8,7 +8,8 @@ public class ItemSpawner : MonoBehaviour
     private float spawnTime;
     public GameObject[] items;
     public GameObject gameManager;
-	public int maxNumberToSpawn;
+	public IntReference currentLevelMaxSpawn;
+	public IntReference currentLevelSpawnCount;
 
     /// <summary>
     /// When true, the spawn will not spawn regardless of any other settings.
@@ -54,12 +55,16 @@ public class ItemSpawner : MonoBehaviour
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y - yOffset, this.gameObject.transform.position.z);
 
         Instantiate(items[rand], pos, transform.rotation);
-    
-    }
 
-	public void setMaxSpawn(int value) {
-		maxNumberToSpawn = value;
+		currentLevelSpawnCount.Variable.value--;
+
+		if(currentLevelSpawnCount.Value <= 0) {
+			TheGameManager.Instance.nextLevel();
+
+		}
+
 	}
+
 
 	private bool canSpawn()
     {
