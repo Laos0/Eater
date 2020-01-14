@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemSpawner : MonoBehaviour
 {
-    private float spawnDelay = 1;
+    private float spawnDelay = 3;
     private float spawnTime;
     public GameObject[] items;
     public GameObject gameManager;
@@ -59,8 +59,7 @@ public class ItemSpawner : MonoBehaviour
 		currentLevelSpawnCount.Variable.value--;
 
 		if(currentLevelSpawnCount.Value <= 0) {
-			TheGameManager.Instance.nextLevel();
-
+			isDisabled = true;
 		}
 
 	}

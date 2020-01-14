@@ -8,11 +8,14 @@ public class UIManager : MonoBehaviour
 
 	public Text scoreTxt;
 	public Text levelTxt;
-	public Text nextLevelAlertTxt;
 	public Text levelObjectScoreTxt;
 
 	public Text currentMaxSpawnTxt;
 	public Text currentSpawnCountTxt;
+
+	public Text nextLevelAlertTxt;
+	public Text gameOverAlertTxt;
+
 
 	public IntReference currentLevel;
 	public IntReference currentLevelScore;
@@ -55,6 +58,18 @@ public class UIManager : MonoBehaviour
 	public void hideNextLevelLabel() {
 		if (nextLevelAlertTxt) {
 			nextLevelAlertTxt.enabled = false;
+		}
+	}
+
+	public void displayGameOverLabel() {
+		if (gameOverAlertTxt) {
+			gameOverAlertTxt.enabled = true;
+		}
+	}
+
+	public void hideGameOverLabel() {
+		if (gameOverAlertTxt) {
+			gameOverAlertTxt.enabled = false;
 		}
 	}
 }

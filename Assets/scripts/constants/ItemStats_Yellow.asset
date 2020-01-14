@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4452a4209cb4728b4b33a864bfe455, type: 3}
   m_Name: ItemStats_Yellow
   m_EditorClassIdentifier: 
-  fallSpeed: 1
+  fallSpeed: 2
   pointValue: 1
   itemType: {fileID: 11400000, guid: 3f164aa62cd2a478fac869d7b466a061, type: 2}
   itemTier: {fileID: 11400000, guid: e4f3c68b809e24093b6f57308444d0be, type: 2}

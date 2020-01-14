@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour {
 	/// Resets all global variables.
 	/// Good for start of a new game.
 	/// </summary>
-	private void reset() {
+	public void reset() {
 		currentLevel.Variable.value = 1;
 		currentLevelScore.Variable.value = 0;
 		currentLevelObjectScore.Variable.value = 0;
@@ -57,6 +57,16 @@ public class LevelManager : MonoBehaviour {
 
 		setLevelStats();
 		itemCount = 0;
+
+		removeAllExistingItems();
+	}
+
+	private void removeAllExistingItems() {
+		List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("item"));
+		Debug.Log("Removing all existing items for restart, found: " + items.Count);
+		items.ForEach(item => {
+			item.GetComponent<DestroyPrefab>().forceDestroy();
+		});
 	}
 
 	public void incrementItemCount()
@@ -86,6 +96,12 @@ public class LevelManager : MonoBehaviour {
 	/// Goes to the next level upon calling
 	/// </summary>
 	public void moveToNextLevel() {
+		if (!canAdvanceToNextLevel()) {
+			
+			gameOver();
+			return;
+		}
+
 		if (currentLevel != null) {
 			if (itemSpawner) {
 				if (uiManager) {
@@ -100,6 +116,15 @@ public class LevelManager : MonoBehaviour {
 		} else {
 			Debug.LogError("Failed to move to next level, currentLevel is null");
 		}
+	}
+
+	private bool canAdvanceToNextLevel() {
+		return currentLevelScore.Value >= currentLevelObjectScore.Value;
+	}
+
+	private void gameOver() {
+		reset();
+		TheGameManager.Instance.gameOver();
 	}
 
 	/// <summary>

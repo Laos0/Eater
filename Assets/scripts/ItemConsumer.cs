@@ -16,7 +16,7 @@ public class ItemConsumer : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void OnCollisionEnter(Collision col) {
+	void OnTriggerEnter(Collider col){
 		if (col.gameObject.tag.Equals("item")) {
 			ItemStats stat = col.gameObject.GetComponent<ItemStats>();
 			if (stat) {

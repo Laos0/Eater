@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 4831911315436679877, guid: 5fdd3a875a77b4a27be25441a668d9a5,
         type: 3}
       propertyPath: m_Name
-      value: mechanic
+      value: BlueItem
       objectReference: {fileID: 0}
     - target: {fileID: 6381734713700412449, guid: 5fdd3a875a77b4a27be25441a668d9a5,
         type: 3}
@@ -142,7 +142,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 93019421546098717, guid: 5fdd3a875a77b4a27be25441a668d9a5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5fdd3a875a77b4a27be25441a668d9a5, type: 3}
 --- !u!4 &6993447565450315330 stripped
 Transform:

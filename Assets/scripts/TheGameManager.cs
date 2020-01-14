@@ -14,11 +14,24 @@ public class TheGameManager : Singleton<TheGameManager>
 	public GameObject player;
 	public GameObject itemSpawner;
 	public LevelManager levelManager;
+	public GameObject uiManager_go;
+
+	private UIManager uiManager;
+	private LevelManager lvlManager;
 
 	//todo
 	public Slider changeFormSlider;
 
 	private bool isPaused = false;
+
+	public void Start() {
+		if (uiManager_go) {
+			uiManager = uiManager_go.GetComponent<UIManager>();
+		}
+		if (levelManager) {
+			lvlManager = levelManager.GetComponent<LevelManager>();
+		}
+	}
 
 	/// <summary>
 	/// Should only contain admin controls
@@ -36,8 +49,28 @@ public class TheGameManager : Singleton<TheGameManager>
 		}
 
 		if (Input.GetKeyUp(KeyCode.N)) {
+			lvlManager.currentLevelScore.Variable.value = 9999;	// cheat force score to bypass next level logic
 			nextLevel();
 		}
+	}
+
+	public void gameOver() {
+		pauseGame();
+		if (uiManager) {
+			uiManager.displayGameOverLabel();
+			StartCoroutine(beginGameRestart());
+		} else {
+			Debug.LogError("Failed to display gameover text, uiManager is null");
+		}
+	}
+
+	IEnumerator beginGameRestart() {
+
+		yield return new WaitForSeconds(3);
+		uiManager.hideGameOverLabel();
+		lvlManager.reset();
+		unPauseGame();
+
 	}
 
 	public void nextLevel() {

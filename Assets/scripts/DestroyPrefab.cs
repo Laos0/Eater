@@ -13,13 +13,17 @@ public class DestroyPrefab : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter(Collision col)
+	public void forceDestroy() {
+		destroySelf();
+	}
+
+	void OnTriggerEnter(Collider col)
     {
         if(col.gameObject.name == "floor")
         {
 			destroySelf();
         }
-    }
+	}
 
 	private void destroySelf() {
 		Destroy(this.gameObject);
