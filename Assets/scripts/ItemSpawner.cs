@@ -8,6 +8,7 @@ public class ItemSpawner : MonoBehaviour
     private float spawnTime;
     public GameObject[] items;
     public GameObject gameManager;
+	public int maxNumberToSpawn;
 
     /// <summary>
     /// When true, the spawn will not spawn regardless of any other settings.
@@ -56,7 +57,11 @@ public class ItemSpawner : MonoBehaviour
     
     }
 
-    private bool canSpawn()
+	public void setMaxSpawn(int value) {
+		maxNumberToSpawn = value;
+	}
+
+	private bool canSpawn()
     {
         return Time.time >= spawnTime;
     }

@@ -9,9 +9,12 @@ public class UIManager : MonoBehaviour
 	public Text scoreTxt;
 	public Text levelTxt;
 	public Text nextLevelAlertTxt;
+	public Text levelObjectScoreTxt;
 
 	public IntReference currentLevel;
+	public IntReference currentLevelScore;
 	public IntReference overallTotalScore;
+	public IntReference currentLevelScoreObjective;
 
     // Start is called before the first frame update
     void Start()
@@ -21,11 +24,14 @@ public class UIManager : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-		if (scoreTxt != null && scoreTxt) {
-			scoreTxt.text = overallTotalScore.Value.ToString();
-		}
-		if(currentLevel != null && levelTxt) {
+		if(levelTxt && currentLevel != null) {
 			levelTxt.text = currentLevel.Value.ToString();
+		}
+		if (scoreTxt && currentLevelScore != null) {
+			scoreTxt.text = currentLevelScore.Value.ToString();
+		}
+		if (levelObjectScoreTxt && currentLevelScoreObjective != null) {
+			levelObjectScoreTxt.text = currentLevelScoreObjective.Value.ToString();
 		}
 	}
 

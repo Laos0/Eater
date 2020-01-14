@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class ItemConsumer : MonoBehaviour
 {
-	public IntReference currentOverallScore;
+	public IntReference currentLevelScore;
 	
 
 	void Start() {
@@ -35,8 +35,8 @@ public class ItemConsumer : MonoBehaviour
 
 
 	private void addToScore(int value) {
-		if (currentOverallScore != null) {
-			currentOverallScore.Variable.value += value;
+		if (currentLevelScore != null) {
+			currentLevelScore.Variable.value += value;
 		} else {
 			Debug.LogError("Failed to add to score, currentOverallScore is null");
 		}

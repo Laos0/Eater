@@ -11,12 +11,30 @@ public class LevelManager : MonoBehaviour {
 	/// The main level value. This is a scriptable instance of Int for sharability across different classes.
 	/// </summary>
 	public IntReference currentLevel;
+	public IntReference currentLevelScore;
 	public IntReference currentOverallScore;
+	public IntReference currentLevelObjectScore;
 
 	public GameObject itemSpawner;
 	public GameObject uiManager_go;
 	public ComboValidator comboValidator;
+
+	/// <summary>
+	/// Communicates to the uiManager for UI updates.
+	/// Set at runtime to properly ensure an instance is available.
+	/// </summary>
 	private UIManager uiManager;
+
+	/// <summary>
+	/// The minimum count each level should be able to spawn.
+	/// </summary>
+	public int minimumItemPerLevel;
+
+	/// <summary>
+	/// The current max item for the current level
+	/// </summary>
+	public int currentLevelMaxItem;
+	public int currentLevelSpawnCount;
 
     // Start is called before the first frame update
 
@@ -26,9 +44,17 @@ public class LevelManager : MonoBehaviour {
 		reset();
     }
 
+	/// <summary>
+	/// Resets all global variables.
+	/// Good for start of a new game.
+	/// </summary>
 	private void reset() {
 		currentLevel.Variable.value = 1;
+		currentLevelScore.Variable.value = 0;
+		currentLevelObjectScore.Variable.value = 0;
 		currentOverallScore.Variable.value = 0;
+
+		setLevelStats();
 		itemCount = 0;
 	}
 
@@ -36,6 +62,26 @@ public class LevelManager : MonoBehaviour {
     {
         itemCount++;
     }
+
+	/// <summary>
+	/// Should be called at every new level
+	/// </summary>
+	public void setLevelStats() {
+		currentLevelScore.Variable.value = 0;
+		int level = currentLevel.Variable.value;
+
+		// max item to spawn algorithm is level + minimum
+		currentLevelMaxItem = level + minimumItemPerLevel;
+
+		// score objective is always half of the total possible score per level - for now
+		currentLevelObjectScore.Variable.value = Mathf.RoundToInt((level + currentLevelMaxItem) / 2);
+
+
+		currentLevelSpawnCount = currentLevelMaxItem;
+		if (itemSpawner) {
+			itemSpawner.GetComponent<ItemSpawner>().setMaxSpawn(currentLevelMaxItem);
+		}
+	}
 
 	/// <summary>
 	/// Goes to the next level upon calling
@@ -66,6 +112,7 @@ public class LevelManager : MonoBehaviour {
 		if (uiManager) {
 			uiManager.hideNextLevelLabel();
 		}
+		setLevelStats();
 		generateNewComboSet();
 		itemSpawner.SetActive(true);		// enable spawner
 	}

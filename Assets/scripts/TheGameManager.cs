@@ -73,7 +73,7 @@ public class TheGameManager : Singleton<TheGameManager>
 
 	public void validateCombo(ItemStats stat) {
 		if (levelManager && stat) {
-			levelManager.comboValidator.validateCombo(stat);
+			levelManager.validateCombo(stat);
 		} else {
 			Debug.LogError("Failed to validate combo, levelManager or stat is null");
 		}
