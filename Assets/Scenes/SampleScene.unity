@@ -231,7 +231,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 264423930}
-  - component: {fileID: 264423931}
   - component: {fileID: 264423929}
   - component: {fileID: 264423932}
   - component: {fileID: 264423933}
@@ -255,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1205035440}
-  playerScore: {fileID: 264423931}
+  scoreManager: {fileID: 0}
   itemSpawner: {fileID: 1834321101}
   levelManager: {fileID: 264423932}
   changeFormSlider: {fileID: 962717653}
@@ -273,20 +272,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &264423931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 264423928}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90446b3b388e04a40aee7a6e030c3099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerScore: 0
-  playerScoreTxt: {fileID: 662938453}
 --- !u!114 &264423932
 MonoBehaviour:
   m_ObjectHideFlags: 0
