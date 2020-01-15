@@ -132,5 +132,9 @@ public class TheGameManager : Singleton<TheGameManager>
 		itemSpawner.GetComponent<ItemSpawner>().items = itemsToSpawn;
 	}
 
+	public void setSpawnCounter(int itemCount) {
+		itemSpawner.GetComponent<ItemSpawner>().spawnCounter = itemCount - 1;
+	}
+
 
 }

@@ -108,6 +108,8 @@ public class LevelManager : MonoBehaviour {
 		currentLevelScore.Variable.value = 0;
 		currentLevelObjectiveScore.Variable.value = 0;
 		currentLevelDestroyedItemCounter.Variable.value = 0;
+
+		itemsToSpawn = new List<GameObject>();
 	}
 
 
@@ -133,6 +135,9 @@ public class LevelManager : MonoBehaviour {
 
 		// generate the comboList of this level
 		generateNewComboSet();
+
+		// set the spawnCounter in ItemSpawner
+		TheGameManager.Instance.setSpawnCounter(itemsToSpawn.Count);
 	}
 
 	/// <summary>
@@ -196,11 +201,16 @@ public class LevelManager : MonoBehaviour {
 	/// Generates the new combo set and sets it on the combo validator.
 	/// </summary>
 	public void generateNewComboSet() {
+
+		// the length of the combo list
+		int r = 3;
+
+
 		if (comboValidator) {
 			List<EnumValue> newComboList = new List<EnumValue>();
 
 			//todo generate the random combo array based on populated items for current level.
-			for (int i = 0; i < items.Count + currentLevel.Variable.value; i++)
+			for (int i = 0; i < r; i++)
 			{
 				int randomSelectedItem = Random.Range(0, items.Count);
 				newComboList.Add(items[randomSelectedItem].GetComponent<ItemStats>().itemStats.itemType);
@@ -216,6 +226,8 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public List<GameObject> selectedSpawnItems() {
+
+		// We'll need to tweak this instead of items.Count, it'll be based on the level
 		for (int i = 0; i < items.Count; i++)
 		{
 			int randomSelectedItem = Random.Range(0, items.Count);
@@ -223,5 +235,9 @@ public class LevelManager : MonoBehaviour {
 		}
 
 		return itemsToSpawn;
+	}
+
+	public void checkAvailableCombos() {
+
 	}
 }
