@@ -203,14 +203,14 @@ public class LevelManager : MonoBehaviour {
 	public void generateNewComboSet() {
 
 		// the length of the combo list
-		int r = 2;
+		int r = 3;
 
 
 		if (comboValidator) {
 			List<EnumValue> newComboList = new List<EnumValue>();
 
 			//todo generate the random combo array based on populated items for current level.
-			// for now, we'll be grabbing the first two of the element
+			// for now, we'll be grabbing the first three element of the itemsToSpawn
 			for (int i = 0; i < r; i++)
 			{
 				//int randomSelectedItem = Random.Range(0, items.Count);
