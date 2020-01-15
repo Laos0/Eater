@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35897d44a454548d69a8184cd3b4bf5f, type: 3}
   m_Name: CurrentLevelSpawnCount
   m_EditorClassIdentifier: 
-  value: 0
+  value: 4

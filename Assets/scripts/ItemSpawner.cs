@@ -6,10 +6,12 @@ public class ItemSpawner : MonoBehaviour
 {
     private float spawnDelay = 3;
     private float spawnTime;
-    public GameObject[] items;
+    public List<GameObject> items;
     public GameObject gameManager;
 	public IntReference currentLevelMaxSpawn;
 	public IntReference currentLevelSpawnCount;
+
+    public List<GameObject> listOfItemsToSpawn;
 
     /// <summary>
     /// When true, the spawn will not spawn regardless of any other settings.
@@ -29,9 +31,18 @@ public class ItemSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //items = TheGameManager.Instance.getListOfItems();
+
         if (!isDisabled && canSpawn())
         {
-            spawnPrefab();
+            if(currentLevelSpawnCount.Variable.value != TheGameManager.Instance.getMaxItemSpawn())
+            {
+                spawnPrefab();
+            }
+            else
+            {
+                currentLevelSpawnCount.Variable.value = 0;
+            }
         }
     }
 
@@ -41,7 +52,7 @@ public class ItemSpawner : MonoBehaviour
         spawnTime = Time.time + spawnDelay;
 
         // the random number between 0 and the array size
-        int rand = Random.Range(0, items.Length );
+        int rand = Random.Range(0, items.Count );
 
         // divide the itemSpawner by 2
         float halfItemSpawnerLength = this.gameObject.transform.localScale.x / 2;
@@ -54,13 +65,14 @@ public class ItemSpawner : MonoBehaviour
 
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y - yOffset, this.gameObject.transform.position.z);
 
-        Instantiate(items[rand], pos, transform.rotation);
+        GameObject currentItemDrop = Instantiate(items[rand], pos, transform.rotation);
 
 		currentLevelSpawnCount.Variable.value--;
 
 		if(currentLevelSpawnCount.Value <= 0) {
 			isDisabled = true;
-		}
+        }
+
 
 	}
 
@@ -69,4 +81,5 @@ public class ItemSpawner : MonoBehaviour
     {
         return Time.time >= spawnTime;
     }
+
 }

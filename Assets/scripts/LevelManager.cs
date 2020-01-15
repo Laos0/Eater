@@ -38,12 +38,28 @@ public class LevelManager : MonoBehaviour {
 	public int minimumItemPerLevel;
 
 
-    // Start is called before the first frame update
+	/// <summary>
+	/// the list OF available gameObejcts items to spawn
+	/// </summary>
+	public List<GameObject> items = new List<GameObject>();
 
+	/// <summary>
+	/// the list of gameObjects that will be spawned
+	/// </summary>
+	public List<GameObject> itemsToSpawn = new List<GameObject>();
+
+	/// <summary>
+	///  For visual Testing for the combo list
+	/// </summary>
+	public List<EnumValue> theCurrentComboList;
+
+
+    // Start is called before the first frame update
     void Start()
     {
 		uiManager = uiManager_go.GetComponent<UIManager>();
 		reset();
+		
     }
 
 	/// <summary>
@@ -111,6 +127,12 @@ public class LevelManager : MonoBehaviour {
 
 		// setup max spawn
 		currentLevelSpawnCount.Variable.value = currentLevelMaxSpawn.Value;
+
+		// set up the items to spawn
+		TheGameManager.Instance.setItemSpawnItemsToSpawn(selectedSpawnItems());
+
+		// generate the comboList of this level
+		generateNewComboSet();
 	}
 
 	/// <summary>
@@ -176,10 +198,30 @@ public class LevelManager : MonoBehaviour {
 	public void generateNewComboSet() {
 		if (comboValidator) {
 			List<EnumValue> newComboList = new List<EnumValue>();
-			//todo generate the random combo array based on populated items for current level.
 
-			// then set the new combo list
+			//todo generate the random combo array based on populated items for current level.
+			for (int i = 0; i < items.Count + currentLevel.Variable.value; i++)
+			{
+				int randomSelectedItem = Random.Range(0, items.Count);
+				newComboList.Add(items[randomSelectedItem].GetComponent<ItemStats>().itemStats.itemType);
+			}
+
 			comboValidator.setCombo(newComboList);
+			theCurrentComboList = newComboList;
 		}
+	}
+
+	public int getCurrentMaxSpawn() {
+		return currentLevelMaxSpawn.ConstantValue;
+	}
+
+	public List<GameObject> selectedSpawnItems() {
+		for (int i = 0; i < items.Count; i++)
+		{
+			int randomSelectedItem = Random.Range(0, items.Count);
+			itemsToSpawn.Add(items[randomSelectedItem]);
+		}
+
+		return itemsToSpawn;
 	}
 }

@@ -116,5 +116,21 @@ public class TheGameManager : Singleton<TheGameManager>
 		}
 	}
 
+	public int getCurrentLevel() {
+		return levelManager.GetComponent<LevelManager>().currentLevel.ConstantValue;
+	}
+
+	public List<GameObject> getListOfItems() {
+		return levelManager.selectedSpawnItems();
+	}
+
+	public int getMaxItemSpawn() {
+		return levelManager.getCurrentMaxSpawn();
+	}
+
+	public void setItemSpawnItemsToSpawn(List<GameObject> itemsToSpawn) {
+		itemSpawner.GetComponent<ItemSpawner>().items = itemsToSpawn;
+	}
+
 
 }
