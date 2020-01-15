@@ -136,5 +136,17 @@ public class TheGameManager : Singleton<TheGameManager>
 		itemSpawner.GetComponent<ItemSpawner>().spawnCounter = itemCount - 1;
 	}
 
+	public string getComboListTxt() {
+
+		string comboListTxt = "";
+		
+		for(int i = 0; i < levelManager.theCurrentComboList.Count; i++)
+		{
+			comboListTxt += levelManager.theCurrentComboList[i];
+		}
+
+		return comboListTxt;
+	}
+
 
 }

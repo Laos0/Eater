@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 	public Text nextLevelAlertTxt;
 	public Text gameOverAlertTxt;
 
+	public Text comboListTxt;
+
 
 	public IntReference currentLevel;
 	public IntReference currentLevelScore;
@@ -47,6 +49,8 @@ public class UIManager : MonoBehaviour
 		if (currentSpawnCountTxt && currentLevelSpawnCount != null) {
 			currentSpawnCountTxt.text = currentLevelSpawnCount.Value.ToString();
 		}
+
+		comboListTxt.text = TheGameManager.Instance.getComboListTxt();
 	}
 
 	public void displayNextLevelLabel() {
