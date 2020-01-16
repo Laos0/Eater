@@ -19,6 +19,8 @@ public class TheGameManager : Singleton<TheGameManager>
 	private UIManager uiManager;
 	private LevelManager lvlManager;
 
+	public GameObject background;
+
 	//todo
 	public Slider changeFormSlider;
 
@@ -71,6 +73,9 @@ public class TheGameManager : Singleton<TheGameManager>
 	IEnumerator beginGameRestart() {
 
 		yield return new WaitForSeconds(3);
+		if (background) {
+			background.GetComponent<BackgroundHead>().resetPosition();
+		}
 		uiManager.hideGameOverLabel();
 		lvlManager.reset();
 		unPauseGame();
