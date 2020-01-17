@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour {
     {
 		uiManager = uiManager_go.GetComponent<UIManager>();
 		reset();
+		itemSpawner.GetComponent<ItemSpawner>().isDisabled = false;
 		
     }
 
@@ -70,9 +71,6 @@ public class LevelManager : MonoBehaviour {
 		// these are global values for the entire game session
 		currentLevel.Variable.value = 1;
 		currentOverallScore.Variable.value = 0;
-
-		// this is level dependent stats
-		levelStatsReset();
 
 		// once all stats are cleared out, set the proper level stat for that level
 		setLevelStats();
@@ -131,13 +129,27 @@ public class LevelManager : MonoBehaviour {
 		currentLevelSpawnCount.Variable.value = currentLevelMaxSpawn.Value;
 
 		// set up the items to spawn
-		TheGameManager.Instance.setItemSpawnItemsToSpawn(selectedSpawnItems());
+		itemSpawner.GetComponent<ItemSpawner>().items = generateSpawnList();
 
 		// generate the comboList of this level
-		generateNewComboSet();
+		try
+		{
+			generateNewComboSet();
 
-		// set the spawnCounter in ItemSpawner
-		TheGameManager.Instance.setSpawnCounter(itemsToSpawn.Count);
+		}catch(UnityException e)
+		{
+			Debug.LogError("Array out ofd bound");
+		}
+
+		try
+		{
+			// set the comboList in ItemConsumer
+			TheGameManager.Instance.setComboList(theCurrentComboList);
+
+		}catch(UnityException e)
+		{
+			Debug.LogError(e);
+		}
 	}
 
 	/// <summary>
@@ -185,7 +197,15 @@ public class LevelManager : MonoBehaviour {
 			uiManager.hideNextLevelLabel();
 		}
 		setLevelStats();
-		generateNewComboSet();
+
+		try
+		{
+			generateNewComboSet();
+		}catch(UnityException e)
+		{
+			Debug.LogError("generateNewComboSet");
+
+		}
 		itemSpawner.SetActive(true);		// enable spawner
 	}
 
@@ -204,7 +224,6 @@ public class LevelManager : MonoBehaviour {
 
 		// the length of the combo list
 		int r = 3;
-
 
 		if (comboValidator) {
 			List<EnumValue> newComboList = new List<EnumValue>();
@@ -226,16 +245,25 @@ public class LevelManager : MonoBehaviour {
 		return currentLevelMaxSpawn.ConstantValue;
 	}
 
-	public List<GameObject> selectedSpawnItems() {
+	public List<GameObject> generateSpawnList() {
 
-		// We'll need to tweak this instead of items.Count, it'll be based on the level
-		for (int i = 0; i < items.Count; i++)
+		try
 		{
-			int randomSelectedItem = Random.Range(0, items.Count);
-			itemsToSpawn.Add(items[randomSelectedItem]);
+
+			// We'll need to tweak this instead of items.Count, it'll be based on the level
+			for (int i = 0; i < currentLevelMaxSpawn.Value; i++)
+			{
+				Debug.Log(currentLevelMaxSpawn);
+				int randomSelectedItem = Random.Range(0, currentLevelMaxSpawn.Value - 1);
+				itemsToSpawn.Add(items[randomSelectedItem]);
+			}
+			return itemsToSpawn;
+		}catch(UnityException e)
+		{
+			Debug.LogError(e);
+			return null;
 		}
 
-		return itemsToSpawn;
 	}
 
 	public void checkAvailableCombos() {

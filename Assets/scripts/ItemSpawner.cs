@@ -13,10 +13,6 @@ public class ItemSpawner : MonoBehaviour
 
     public List<GameObject> listOfItemsToSpawn;
 
-    /// this variable is based off the LevelManager where spawnCount is equal to to the 
-    /// itemsToSpawn.Count(), and will be decremented over time
-    public int spawnCounter;
-
     /// <summary>
     /// When true, the spawn will not spawn regardless of any other settings.
     /// </summary>
@@ -32,6 +28,10 @@ public class ItemSpawner : MonoBehaviour
         isDisabled = false;
     }
 
+    void Start() {
+        isDisabled = true;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -39,14 +39,7 @@ public class ItemSpawner : MonoBehaviour
 
         if (!isDisabled && canSpawn())
         {
-            if(currentLevelSpawnCount.Variable.value != TheGameManager.Instance.getMaxItemSpawn())
-            {
-                spawnPrefab();
-            }
-            else
-            {
-                currentLevelSpawnCount.Variable.value = 0;
-            }
+            spawnPrefab();
         }
     }
 
@@ -66,20 +59,22 @@ public class ItemSpawner : MonoBehaviour
 
         Vector3 pos = new Vector3(randomVectorX,this.transform.position.y - yOffset, this.gameObject.transform.position.z);
 
+
         // once all the require items in the items array have dropped, we then can randomly spawn any of the items
-        if(spawnCounter > 0)
+        if(currentLevelSpawnCount.Value > 0)
         {
-            GameObject currentItemDrop = Instantiate(items[spawnCounter], pos, transform.rotation);
-            spawnCounter--;
+            Instantiate(items[currentLevelSpawnCount.Value - 1], pos, transform.rotation);
+            currentLevelSpawnCount.Variable.value--;
         }
         else
         {
             // the random number between 0 and the array size
             int rand = Random.Range(0, items.Count);
-            GameObject currentItemDrop = Instantiate(items[rand], pos, transform.rotation);
+            Instantiate(items[rand], pos, transform.rotation);
+            currentLevelSpawnCount.Variable.value--;
         }
 
-		currentLevelSpawnCount.Variable.value--;
+		//currentLevelSpawnCount.Variable.value--;
 
 		if(currentLevelSpawnCount.Value <= 0) {
 			isDisabled = true;

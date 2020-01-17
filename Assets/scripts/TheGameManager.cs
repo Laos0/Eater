@@ -15,6 +15,7 @@ public class TheGameManager : Singleton<TheGameManager>
 	public GameObject itemSpawner;
 	public LevelManager levelManager;
 	public GameObject uiManager_go;
+	public ItemConsumer itemConsumer;
 
 	private UIManager uiManager;
 	private LevelManager lvlManager;
@@ -126,31 +127,36 @@ public class TheGameManager : Singleton<TheGameManager>
 	}
 
 	public List<GameObject> getListOfItems() {
-		return levelManager.selectedSpawnItems();
+		return levelManager.generateSpawnList();
 	}
 
 	public int getMaxItemSpawn() {
 		return levelManager.getCurrentMaxSpawn();
 	}
 
-	public void setItemSpawnItemsToSpawn(List<GameObject> itemsToSpawn) {
-		itemSpawner.GetComponent<ItemSpawner>().items = itemsToSpawn;
-	}
-
-	public void setSpawnCounter(int itemCount) {
-		itemSpawner.GetComponent<ItemSpawner>().spawnCounter = itemCount - 1;
-	}
-
 	public string getComboListTxt() {
 
 		string comboListTxt = "";
-		
-		for(int i = 0; i < levelManager.theCurrentComboList.Count; i++)
-		{
-			comboListTxt += levelManager.theCurrentComboList[i];
-		}
 
-		return comboListTxt;
+		try
+		{
+			for(int i = 0; i < levelManager.theCurrentComboList.Count; i++)
+			{
+				comboListTxt += levelManager.theCurrentComboList[i];
+			}
+
+			return comboListTxt;
+
+		}catch(UnityException e)
+		{
+			Debug.LogError("OUT OF BOUND in TheGameManager");
+			return null;
+		}
+		
+	}
+
+	public void setComboList(List<EnumValue> comboList) {
+		itemConsumer.comboList = comboList;
 	}
 
 

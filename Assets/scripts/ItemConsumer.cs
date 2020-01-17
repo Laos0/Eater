@@ -9,6 +9,16 @@ using UnityEngine;
 public class ItemConsumer : MonoBehaviour
 {
 	public IntReference currentLevelScore;
+
+	/// <summary>
+	/// this is the player's current combo list
+	/// </summary>
+	public List<EnumValue> currentComboList;
+
+	/// <summary>
+	/// this is the current combo list for this level
+	/// </summary>
+	public List<EnumValue> comboList;
 	
 
 	void Start() {
@@ -29,6 +39,35 @@ public class ItemConsumer : MonoBehaviour
 
 				// get rid of item prefab in scene
 				TheGameManager.Instance.registerAndDestroyLevelItem(col.gameObject);
+
+				// store the player's combo into an array
+				currentComboList.Add(col.gameObject.GetComponent<ItemStats>().itemStats.itemType);
+
+
+				try
+				{
+					// check if the currentComboList is equal to the comboList
+					for(int i = 0; i < currentComboList.Count; i++)
+					{
+						if (currentComboList[i] == comboList[i])
+						{
+							// then it matches 
+							Debug.Log("Combo chain, it is a match");
+						}
+						else // if the currentComboList haven even 1 matching that are not the same then we must reset the combo of the player
+						{
+							Debug.Log("Combo fail, resetting the currentComboList");
+							for(int k = 0; k < currentComboList.Count; k++)
+							{
+								currentComboList.RemoveAt(k);
+							}
+						}
+
+					}
+				}catch(UnityException e)
+				{
+					Debug.LogError("OUT OF BOUNDDDDD");
+				}
 			}
 		}
 	}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657856, g: 0.49641234, b: 0.57481724, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -371,6 +371,7 @@ MonoBehaviour:
   itemSpawner: {fileID: 1834321101}
   levelManager: {fileID: 264423932}
   uiManager_go: {fileID: 178202352}
+  itemConsumer: {fileID: 1205035441}
   background: {fileID: 1099343002}
   changeFormSlider: {fileID: 962717653}
 --- !u!4 &264423930
@@ -1713,6 +1714,8 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: a65ef201ffd3445cb8ec38491ceccbb7, type: 2}
+  currentComboList: []
+  comboList: []
 --- !u!114 &1205035442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2551,7 +2554,6 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 785559fb64fce455b9f726c7804c60c3, type: 2}
   listOfItemsToSpawn: []
-  spawnCounter: 0
   isDisabled: 0
 --- !u!1 &1922562109
 GameObject:
