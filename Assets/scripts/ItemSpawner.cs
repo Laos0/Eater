@@ -14,22 +14,31 @@ public class ItemSpawner : MonoBehaviour
     public List<GameObject> listOfItemsToSpawn;
 
     /// <summary>
-    /// When true, the spawn will not spawn regardless of any other settings.
+    /// Do not make it public - master flag to enable and disable.
     /// </summary>
-    public bool isDisabled = false;
+    private bool isDisabled = false;
 
-    public void OnDisable()
+	public void Awake() {
+		// auto disable and let a manager start the spawner.
+		isDisabled = true;
+	}
+
+	/// <summary>
+	/// To call this, use setActive on the GameObject.
+	/// </summary>
+	private void OnDisable()
     {
+		Debug.Log("Spawner disabled");
         isDisabled = true;
     }
 
-    public void OnEnable()
+	/// <summary>
+	/// To call this, use setActive on the GameObject.
+	/// </summary>
+	private void OnEnable()
     {
         isDisabled = false;
-    }
-
-    void Start() {
-        isDisabled = true;
+		Debug.Log("Spawner enabled");
     }
 
     // Update is called once per frame
@@ -37,7 +46,7 @@ public class ItemSpawner : MonoBehaviour
     {
         //items = TheGameManager.Instance.getListOfItems();
 
-        if (!isDisabled && canSpawn())
+        if (!isDisabled && isCoolDownDone())
         {
             spawnPrefab();
         }
@@ -84,7 +93,7 @@ public class ItemSpawner : MonoBehaviour
 	}
 
 
-	private bool canSpawn()
+	private bool isCoolDownDone()
     {
         return Time.time >= spawnTime;
     }

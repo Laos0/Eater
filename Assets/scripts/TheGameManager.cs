@@ -55,12 +55,20 @@ public class TheGameManager : Singleton<TheGameManager>
 			lvlManager.currentLevelScore.Variable.value = 9999;	// cheat force score to bypass next level logic
 			nextLevel();
 		}
+		Debug.LogError("Admin debug keys are on, make sure to turn off for production build");
 	}
 
+	/// <summary>
+	/// Everytime an item in the scene is destroyed. Notify the level manager.
+	/// </summary>
+	/// <param name="go">Go.</param>
 	public void registerAndDestroyLevelItem(GameObject go) {
 		levelManager.registerAndDestroyLevelItem(go);
 	}
 
+	/// <summary>
+	/// Master controller for initiating game over wherever it occurs in the game.
+	/// </summary>
 	public void gameOver() {
 		pauseGame();
 		if (uiManager) {
@@ -71,6 +79,10 @@ public class TheGameManager : Singleton<TheGameManager>
 		}
 	}
 
+	/// <summary>
+	/// Handles restarting the game.
+	/// </summary>
+	/// <returns>The game restart.</returns>
 	IEnumerator beginGameRestart() {
 
 		yield return new WaitForSeconds(3);
@@ -83,12 +95,18 @@ public class TheGameManager : Singleton<TheGameManager>
 
 	}
 
+	/// <summary>
+	/// Move to the next level.
+	/// </summary>
 	public void nextLevel() {
 		if (levelManager) {
 			levelManager.moveToNextLevel();
 		}
 	}
 
+	/// <summary>
+	/// Pause certain updates in the game.
+	/// </summary>
 	private void pauseGame()
 	{
 		if (itemSpawner) {
@@ -97,8 +115,12 @@ public class TheGameManager : Singleton<TheGameManager>
 		if (player) {
 			player.GetComponent<PlayerController>().disable();
 		}
+		Debug.LogError("Game is paused");
 	}
 
+	/// <summary>
+	/// Un pause the game.
+	/// </summary>
 	private void unPauseGame()
 	{
 		if (itemSpawner) {
@@ -107,6 +129,7 @@ public class TheGameManager : Singleton<TheGameManager>
 		if (player) {
 			player.GetComponent<PlayerController>().enable();
 		}
+		Debug.LogError("Game is unpaused");
 	}
 
 	public void decrementChangeFormSlider()

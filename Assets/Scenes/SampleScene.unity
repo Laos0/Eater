@@ -1854,8 +1854,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1.3905861, y: 0.52111626, z: 1}
+  m_Center: {x: -0.19529307, y: 4.0698524, z: 0}
 --- !u!114 &1205035446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2630,7 +2630,6 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 785559fb64fce455b9f726c7804c60c3, type: 2}
   listOfItemsToSpawn: []
-  isDisabled: 0
 --- !u!1 &1922562109
 GameObject:
   m_ObjectHideFlags: 0

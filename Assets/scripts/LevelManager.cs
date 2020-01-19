@@ -59,9 +59,24 @@ public class LevelManager : MonoBehaviour {
     {
 		uiManager = uiManager_go.GetComponent<UIManager>();
 		reset();
-		itemSpawner.GetComponent<ItemSpawner>().isDisabled = false;
-		
+		disableSpawner();
     }
+
+	public void enableSpawner() {
+		if (itemSpawner) {
+			itemSpawner.SetActive(true);
+		} else {
+			Debug.Log("Failed to enable spawner, ItemSpawner GO is null");
+		}	
+	}
+
+	public void disableSpawner() {
+		if (itemSpawner) {
+			itemSpawner.SetActive(true);
+		} else {
+			Debug.Log("Failed to disable spawner, ItemSpawner GO is null");
+		}
+	}
 
 	/// <summary>
 	/// Resets all global variables.
@@ -91,6 +106,9 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// When starting new level, cleans up existing items in the scene
+	/// </summary>
 	private void removeAllExistingGameObjectItems() {
 		List<GameObject> items = new List<GameObject>(GameObject.FindGameObjectsWithTag("item"));
 		Debug.Log("Removing all existing items for restart, found: " + items.Count);
@@ -101,6 +119,7 @@ public class LevelManager : MonoBehaviour {
 
 	/// <summary>
 	/// Use for starting a new level. Not for restarting a brand new game session.
+	/// Rests common level stats back to default.
 	/// </summary>
 	private void levelStatsReset() {
 		currentLevelScore.Variable.value = 0;
@@ -253,7 +272,7 @@ public class LevelManager : MonoBehaviour {
 			// We'll need to tweak this instead of items.Count, it'll be based on the level
 			for (int i = 0; i < currentLevelMaxSpawn.Value; i++)
 			{
-				Debug.Log(currentLevelMaxSpawn);
+				Debug.Log("generateSpawnList() Current Max Spawn: " + currentLevelMaxSpawn.Value);
 				int randomSelectedItem = Random.Range(0, currentLevelMaxSpawn.Value - 1);
 				itemsToSpawn.Add(items[randomSelectedItem]);
 			}
