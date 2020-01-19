@@ -7,7 +7,6 @@ public class ItemSpawner : MonoBehaviour
     private float spawnDelay = 3;
     private float spawnTime;
     public List<GameObject> items;
-    public GameObject gameManager;
 	public IntReference currentLevelMaxSpawn;
 	public IntReference currentLevelSpawnCount;
 
